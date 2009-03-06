@@ -1,0 +1,50 @@
+h1. Rails Models
+
+* Model is the gatekeeper to enterprise data
+* Validation are business rules in model
+
+h1. Validations
+
+:code code/songs_validation.rb[class=code-large]
+
+h1. Default Finder Methods
+
+* show method returns all blogs that match :id
+* Rails usually puts these simple methods in the controller
+
+:code code/blogs_controller.rb[class=code-large]
+
+h1. Custom Finder Methods
+
+* Perform more complex business operations
+* These methods are best stored in the model
+* Keep controller clean, place business login in Model
+
+:code code/blog_model_custom.rb[class=code-large]
+
+h1. Model Finder Methods
+
+@find(:first, criteria)@
+Finds first row matching criteria
+
+@find(:last, criteria)@
+Finds last row matching criteria
+
+@find(:all, criteria)@
+Finds all rows matching criteria
+
+h1. Example Model Finders
+
+@blog = Blog.find(123)@
+Finds the blog with id of 123
+
+@blog = Blog.find_by_title("My Blog")@
+Finds the blog named "My Blog"
+
+h1. SQL Operations
+
+@blog = Blog.find(:all, :order => "title asc")@
+Find all blogs, order by title ascending
+
+@blog = Blog.find(:all, :order => "created_at", :limit => 5)@
+Find all blogs, order by timestamp and only show the first 5

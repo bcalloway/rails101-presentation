@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Intro to Ruby on Rails</title>
+<!-- metadata -->
+<meta name="generator" content="S5" />
+<meta name="version" content="S5 1.1" />
+<meta name="presdate" content="&date" />
+<meta name="author" content="Brandon Calloway" />
+<meta name="organization" content="&organization;" />
+<meta name="company" content="The Scully Group" />
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<link rel="stylesheet" href="../ui/default/slides.css" type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="../ui/default/outline.css" type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="../lib/stylesheets/print.css" type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="../ui/default/opera.css" type="text/css" media="projection" id="operaFix" />
+
+<link rel="stylesheet" href="../lib/stylesheets/pressie.css" type="text/css" />
+
+<!-- S5 JS -->
+<script src="../ui/default/slides.js" type="text/javascript"></script>
+
+<!-- Syntax Highlighter -->
+<link rel="stylesheet"  href="../dp.SyntaxHighlighter/Styles/SyntaxHighlighter.css"></link>
+
+</head>
+<body>
+
+<div class="layout">
+<div id="controls"><!-- DO NOT EDIT --></div>
+<div id="currentSlide"><!-- DO NOT EDIT --></div>
+<div id="header"></div>
+<div id="footer">
+<h2>Copyright &copy; 2008 The Scully Group</h2>
+</div>
+
+</div>
+
+
+<div class="presentation">
+<div class="slide">
+<h1>Getting Started with Rails</h1>
+<ul>
+	<li>Take Baby Steps in Iterations</li>
+	<li>Naming Conventions<br />
+Model &#8594; Singular (Blog)<br />
+Controller &#8594; Plural (Blogs)<br />
+DB Table &#8594; Plural (blogs)</li>
+</ul>
+<p>Try it in script/console:<br />
+<code>"song".pluralize</code></p>
+<ul>
+	<li>Using Git<br />
+<code>ruby script/generate -g controller songs</code></li>
+</ul>
+</div>
+<div class="slide">
+<h1>The Rails Landscape</h1>
+<p><code>rails -d mysql myproject</code></p>
+<p><img src="../ui/default/images/rails_dir.png" width="473" height="336" alt="Rails Dir" /></p>
+</div>
+<div class="slide">
+<h1>Gems</h1>
+<ul>
+	<li>Gems are packaged Ruby &#8220;add-ons&#8221;<br />
+<code>gem install rails</code></li>
+	<li>Gems contain documentation<br />
+<code>gem server</code> &#8594; http://localhost:8808</li>
+</ul>
+</div>
+<div class="slide">
+<h1>Script Console</h1>
+<ul>
+	<li>Interactive Rails</li>
+	<li>Can handle any Rails operation</li>
+	<li><span class="caps">VERY</span> useful development tool</li>
+	<li>Useful for interacting with model/controller</li>
+</ul>
+<p><code>ruby script/console</code></p>
+</div>
+<div class="slide">
+<h1>Script Server</h1>
+<ul>
+	<li>Starts WEBrick server and Mongrels</li>
+	<li>Useful for debugging</li>
+	<li>Built into Rails</li>
+	<li>No need for Apache server</li>
+</ul>
+<p><code>ruby script/server</code></p>
+</div>
+<div class="slide">
+<h1>Scaffolding</h1>
+<ul>
+	<li>Quickly gets an app up and running</li>
+	<li>Automagically sets up <span class="caps">CRUD</span> operations</li>
+	<li>Scaffolding is <span class="caps">EVIL</span></li>
+</ul>
+<p><code>ruby script/generate scaffold blog title:string body:text</code></p>
+<p><code>rake db:migrate</code></p>
+<p>View all available rake commands (Rake is the Ruby version of Make)<br />
+<code>rake -T</code></p>
+</div>
+<div class="slide">
+<h1>Scaffold Actions for Blogs</h1>
+<p><code>index</code> &#8594; list all blogs</p>
+<p><code>show</code> &#8594; show one blog&#8217;s details</p>
+<p><code>new</code> &#8594; show a form for creating a new blog</p>
+<p><code>create</code> &#8594; insert a new blog into the database</p>
+<p><code>edit</code> &#8594; show a form for editing a blog</p>
+<p><code>update</code> &#8594; update the blog in the database</p>
+<p><code>destroy</code> &#8594; deletes a blog from the database</p>
+</div>
+<div class="slide">
+<h1>Rails Helpers</h1>
+<p>There are many helpers built-in to Rails<br />
+<code>number_to_currency(185)</code> &#8594; $185.00<br />
+<code>number_to_phone(8889878474)</code> &#8594; 888-987-8474</p>
+</div>
+<div class="slide">
+<h1>Custom Helpers</h1>
+<ul>
+	<li>Help keep your projects <span class="caps">DRY</span></li>
+	<li>Code is automagically included into views</li>
+</ul>
+<p><code>&lt;%= price(song.price) %&gt;</code><br />
+<div class="code-normal"></p>
+<pre name="code" class="ruby:nogutter:nocontrols">module SongsHelper
+  def price(value)
+    value == 0 ? "FREE!" :
+    number_to_currency(value)
+  end
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/songs_helper.rb">code/songs_helper.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>Partials</h1>
+<ul>
+	<li>Help keep your projects <span class="caps">DRY</span></li>
+	<li>Similar to <span class="caps">PHP</span> includes</li>
+</ul>
+<p>Save contextual navigation as a partial in the /view/blogs directory<br />
+<code>_blog_nav.html.erb</code></p>
+<p>Display the navigation in the songs view<br />
+<code>&lt;%= render :partial =&gt; 'blog_nav' %&gt;</code></div></p>
+
+  <!-- Syntax Highlighter -->
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shCore.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushCpp.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushRuby.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushXml.js"></script>
+  <script language="javascript">
+  dp.SyntaxHighlighter.ClipboardSwf = '/flash/clipboard.swf';
+  dp.SyntaxHighlighter.HighlightAll('code');
+  </script>
+</div>
+</body>
+</html>

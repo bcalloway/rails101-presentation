@@ -1,0 +1,38 @@
+h1. Associations
+
+* Relational database
+* Foreign Keys to link table data
+* One-to-Many
+* Many-to-Many
+
+h1. One-to-Many Association
+
+Let's create Comments for each Blog
+
+<img src="../ui/default/images/MVC_associations.jpg" width="610" height="408" alt="MVC Associations" />
+
+h1. One-to-Many Relationship
+
+<img src="../ui/default/images/db_schema.jpg" width="688" height="325" alt="Db Schema" />
+
+h1. One-to-Many Migration
+
+:code code/comment_migration.rb[class=code-large]
+
+h1. Updating the Controller
+
+@<%= link_to "Comment!", new_comment_path(:blog_id => blog.id) %>@
+
+:code code/comments_controller.rb[new class=code-large]
+
+h1.  Updating the Form
+
+* Simply add a hidden field to the form
+* Passes the blog_id to the comment controller
+* blog_id is inserted into the comments table via the create method
+<p>&nbsp;</p>
+<pre><code><%= hidden_field_tag :blog_id, @blog.id) %></code></pre> 
+
+h1. Adding Comments to blogs
+
+:code code/comments_controller.rb[create class=code-small]

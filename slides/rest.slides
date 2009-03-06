@@ -1,0 +1,73 @@
+h1. REST and Rails Routes
+
+* Representational state transfer (REST)
+* Outlines how resources are defined and addressed
+
+Show all routes
+@rake routes@
+
+Default Route
+@http://localhost:3000/blogs/show/123@
+
+* @blogs@ is the controller
+* @show@ is the action
+* @123@ is the id of the blog entry
+
+h1. Custom Routes
+
+:code code/routes.rb[class=code-normal]
+
+h1. RESTful URLs
+
+Browsers are dumb, they can only do a few operations:
+
+@GET      http://localhost:3000/blogs/123@
+
+@POST     http://localhost:3000/blogs@
+
+@PUT      http://localhost:3000/blogs/123@
+
+@DELETE   http://localhost:3000/blogs/123@
+
+h1. Rails to the Rescue
+
+<table id="crud">
+  <tr>
+    <td>&nbsp;</td><td><strong>SQL</strong></td><td><strong>HTTP</strong></td><td><strong>AR</strong></td><td><strong>Action</strong></td>
+  </tr>
+  <tr>
+    <td><strong>C</strong>reate</td><td>INSERT</td><td>POST</td><td>create</td><td>create</td>
+  </tr>
+  <tr>
+    <td><strong>R</strong>ead</td><td>SELECT</td><td>GET</td><td>find</td><td>show</td>
+  </tr>
+  <tr>
+    <td><strong>U</strong>pdate</td><td>UPDATE</td><td>PUT</td><td>update</td><td>update</td>  
+  </tr>
+  <tr>
+    <td><strong>D</strong>estroy</td><td>DELETE</td><td>DELETE</td><td>destroy</td><td>destroy</td>
+</tr>
+</table>
+
+h1. RESTful create
+
+:code code/forms.rb[new class=code-large]
+
+:code code/forms.rb[create class=code-large]
+
+h1. RESTful show
+
+<pre><code><%= link_to blog.title, blog_path(@blog) %></code></pre>
+
+:code code/blogs_controller.rb[class=code-large]
+
+h1. RESTful update
+
+:code code/forms.rb[edit class=code-large]
+
+:code code/forms.rb[update class=code-large]
+
+h1. RESTful destroy
+
+<pre><code><%= button_to("Delete", blog_url(@blog), :method => :delete) %></pre></code>
+:code code/forms.rb[destroy class=code-large]

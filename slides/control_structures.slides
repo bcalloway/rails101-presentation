@@ -1,0 +1,25 @@
+h1. Ruby Control Structures
+
+* Again, similar PHP
+* if - else
+* Loops
+* Iterators
+* Statement Modifiers
+
+h1. Conditional Statements
+
+:code code/control_structure.rb[if class=code-large]
+
+<div class="note">Notice in Ruby that "elseif" is spelled "elsif"</div>
+
+h1. Loops
+
+:code code/control_structure.rb[while class=code-large]
+:code code/control_structure.rb[for class=code-large]
+
+h1. Blocks and Iterators
+
+* A block is a chunk of code attached to a method
+* An iterator executes a set command for the specified duration
+
+:code code/blocks.rb[class=code-large]

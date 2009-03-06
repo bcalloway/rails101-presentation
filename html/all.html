@@ -1,0 +1,1031 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Intro to Ruby on Rails</title>
+<!-- metadata -->
+<meta name="generator" content="S5" />
+<meta name="version" content="S5 1.1" />
+<meta name="presdate" content="&date" />
+<meta name="author" content="Brandon Calloway" />
+<meta name="organization" content="&organization;" />
+<meta name="company" content="The Scully Group" />
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<link rel="stylesheet" href="../ui/default/slides.css" type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="../ui/default/outline.css" type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="../lib/stylesheets/print.css" type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="../ui/default/opera.css" type="text/css" media="projection" id="operaFix" />
+
+<link rel="stylesheet" href="../lib/stylesheets/pressie.css" type="text/css" />
+
+<!-- S5 JS -->
+<script src="../ui/default/slides.js" type="text/javascript"></script>
+
+<!-- Syntax Highlighter -->
+<link rel="stylesheet"  href="../dp.SyntaxHighlighter/Styles/SyntaxHighlighter.css"></link>
+
+</head>
+<body>
+
+<div class="layout">
+<div id="controls"><!-- DO NOT EDIT --></div>
+<div id="currentSlide"><!-- DO NOT EDIT --></div>
+<div id="header"></div>
+<div id="footer">
+<h2>Copyright &copy; 2008 The Scully Group</h2>
+</div>
+
+</div>
+
+
+<div class="presentation">
+<div class="slide">
+<h1>Intro to Ruby on Rails</h1>
+<blockquote>
+<p>Brandon Calloway</p>
+</blockquote>
+</div>
+<div class="slide">
+<h1>Contents</h1>
+<div>
+<ul>
+	<li>Ruby Basics</li>
+</ul>
+<ul>
+	<li>Ruby Data Structures</li>
+</ul>
+<ul>
+	<li>Ruby Control Structures</li>
+</ul>
+<ul>
+	<li>Hello Rails!</li>
+</ul>
+<ul>
+	<li>Getting Started with Rails</li>
+</ul>
+<ul>
+	<li>Rails Migrations</li>
+</ul>
+<ul>
+	<li>Rails Models</li>
+</ul>
+<ul>
+	<li>Rails View Layouts</li>
+</ul>
+<ul>
+	<li><span class="caps">REST</span> and Rails Routes</li>
+</ul>
+<ul>
+	<li>Using Forms in Rails</li>
+</ul>
+<ul>
+	<li>Associations</li>
+</ul>
+<ul>
+	<li>Testing</li>
+</ul>
+<ul>
+	<li><span class="caps">AJAX</span></li>
+</ul>
+<ul>
+	<li>Your Rails Environment</li>
+</ul>
+<ul>
+	<li>Using GitHub</li>
+</ul>
+<ul>
+	<li>Deploying with Capistrano</li>
+</ul>
+<ul>
+	<li>Resources</li>
+</ul>
+</div>
+</div>
+<div class="title slide">
+<h1>Ruby Basics</h1>
+<p><img src="../ui/default/images/ruby.png" width="142" height="163" alt="Ruby" style="float:right" /></p>
+<ul>
+	<li>Ruby originated in Japan during the mid-1990s</li>
+	<li>Initially developed and designed by Yukihiro Matz Matsumoto</li>
+	<li>Ruby is an Object Oriented Language</li>
+	<li>Everything is an object</li>
+</ul>
+</div>
+<div class="slide">
+<h1>Ruby Objects</h1>
+<ul>
+	<li>Instance Variables</li>
+	<li>Instance Methods</li>
+	<li>Symbols</li>
+</ul>
+</div>
+<div class="slide">
+<h1>Instance Variables and Methods</h1>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">class Songs
+
+  def index
+    @songs = Song.find(:all)
+  end
+  
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/songs.rb">code/songs.rb</a></div></p>
+<div class="note">
+<code>index</code> is an instance method in Songs<br />
+<code>@songs</code> is an instance variable in Songs
+</div>
+</div>
+<div class="slide">
+<h1>Symbols</h1>
+<ul>
+	<li>Used to name and identify things</li>
+	<li>Means &#8220;the thing named xxx&#8221;</li>
+	<li>Prefixed with a colon :</li>
+</ul>
+<p><code>has_many :songs</code><br />
+<code>Songs.find(:all)</code></p>
+</div>
+<div class="slide">
+<h1>Strings</h1>
+<ul>
+	<li>Double-quoted strings support interpolated Ruby code</li>
+	<li>Single quoted strings display literal contents</li>
+</ul>
+<p><code>puts 'Hello, Ruby!'</code><br />
+<code>puts "It's now #{Time.now}!"</code></p>
+</div>
+<div class="slide">
+<h1>Class Methods in Rails</h1>
+<ul>
+	<li>Methods tied to class</li>
+	<li>Perform class-level operations</li>
+</ul>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">class Song &lt; ActiveRecord::Base
+end
+
+songs = Song.find(:all)
+bono = Artist.new(:name =&gt; "Bono")</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/class_method.rb">code/class_method.rb</a></div></p>
+</div>
+<div class="title slide">
+<h1>Ruby Data Structures</h1>
+<ul>
+	<li>Similar to other languages such as <span class="caps">PHP</span></li>
+	<li>Shares same rules and operators as other languages</li>
+	<li>Bonus: it&#8217;s all about the objects</li>
+</ul>
+</div>
+<div class="slide">
+<h1>Arrays</h1>
+<ul>
+	<li>Ordered collection of arbitrary objects</li>
+	<li>Indexed by integers</li>
+</ul>
+<p><code>arr = ["dog", "cat", "robot"]</code><br />
+<code>arr[0] = dog</code><br />
+<code>arr[1] = cat</code></p>
+</div>
+<div class="slide">
+<h1>Hashes</h1>
+<ul>
+	<li>Unordered collection indexed by artbitrary key</li>
+	<li>Keys must be unique</li>
+	<li>Keys and values can just about any object</li>
+</ul>
+<p><code>animals = { "dog" =&gt; "canine", "cat" =&gt; "feline"}</code><br />
+<code>puts animals["cat"]</code> =&gt; &#8220;feline&#8221;</p>
+<div class="note">This is how Rails stores database values in an object (hint, hint)</div>
+</div>
+<div class="title slide">
+<h1>Ruby Control Structures</h1>
+<ul>
+	<li>Again, similar <span class="caps">PHP</span></li>
+	<li>if &#8211; else</li>
+	<li>Loops</li>
+	<li>Iterators</li>
+	<li>Statement Modifiers</li>
+</ul>
+</div>
+<div class="slide">
+<h1>Conditional Statements</h1>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">if song == "Britney Spears"
+  rating = "LAME"
+elsif artist == "The Police"
+  rating = "Awesome"
+else rating = "Most Awesome"
+end
+</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/control_structure.rb">code/control_structure.rb</a></div></p>
+<div class="note">Notice in Ruby that &#8220;elseif&#8221; is spelled &#8220;elsif&#8221;</div>
+</div>
+<div class="slide">
+<h1>Loops</h1>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">while jukebox.song_count &lt;= 100
+  # do awesome stuff
+end
+</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/control_structure.rb">code/control_structure.rb</a></div></p>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">for artist in @songs
+  #do really awesome stuff
+end
+</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/control_structure.rb">code/control_structure.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>Blocks and Iterators</h1>
+<ul>
+	<li>A block is a chunk of code attached to a method</li>
+	<li>An iterator executes a set command for the specified duration</li>
+</ul>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">3.times { puts "Ho!"}
+
+hash = { "dog" =&gt; "canine", "cat" =&gt; "feline"}
+hash.each do |key, value|
+  puts "#{key} -&gt; #{value}"
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/blocks.rb">code/blocks.rb</a></div></p>
+</div>
+<div class="title slide">
+<h1>Hello Rails!</h1>
+<p><strong>Rails Values</strong></p>
+<ul>
+	<li>Don&#8217;t Repeat Yourself (DRY)</li>
+	<li>Convention Over Configuration (don&#8217;t reinvent the wheel)</li>
+	<li>Productive</li>
+	<li>Agile</li>
+</ul>
+</div>
+<div class="slide">
+<h1>Rails <span class="caps">MVC</span> Framework</h1>
+<ul>
+	<li>Full Stack, Baby!</li>
+	<li>Fully Integrated and Seamless</li>
+</ul>
+<p><img style="margin-left: 100px" src="../ui/default/images/MVC.jpg" width="610" height="408" alt="MVC" /></p>
+</div>
+<div class="slide">
+<h1>Controller</h1>
+<p>The Controller is the &#8220;Traffic Cop&#8221;</p>
+<p>http://localhost:3000/<code>blogs</code>/show/123</p>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">class BlogsController &lt; ApplicationController
+  def show
+    @blog = Blog.find(params[:id])
+  end
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/blogs_controller.rb">code/blogs_controller.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>Controller &#8211; Action</h1>
+<p>The Controller is the &#8220;Traffic Cop&#8221;</p>
+<p>http://localhost:3000/blogs/<code>show</code>/123</p>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">class BlogsController &lt; ApplicationController
+  def show
+    @blog = Blog.find(params[:id])
+  end
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/blogs_controller.rb">code/blogs_controller.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>Controller &#8211; Parameter</h1>
+<p>The Controller is the &#8220;Traffic Cop&#8221;</p>
+<p>http://localhost:3000/blogs/show/<code>123</code></p>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">class BlogsController &lt; ApplicationController
+  def show
+    @blog = Blog.find(params[:id])
+  end
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/blogs_controller.rb">code/blogs_controller.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>Views (Templates)</h1>
+<ul>
+	<li>html.erb (for <span class="caps">HTML</span> pages)</li>
+	<li>js.rjs (for <span class="caps">AJAX</span> pages)</li>
+</ul>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">&lt;% for blog in @blogs %&gt;
+    &lt;p&gt;
+      &lt;%=h blog.title %&gt;&lt;br /&gt;
+      &lt;%=h blog.body %&gt;
+    &lt;/p&gt;
+&lt;% end %&gt;</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/view.html.erb">code/view.html.erb</a></div></p>
+</div>
+<div class="slide">
+<h1>Models</h1>
+<ul>
+	<li>Handle business logic</li>
+	<li>Gatekeeper to the data</li>
+</ul>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">class Blog &lt; ActiveRecord::Base
+
+  has_many :comments
+  
+  validates_presence_of :title
+  validates_presence_of :body
+
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/blog_model.rb">code/blog_model.rb</a></div></p>
+</div>
+<div class="title slide">
+<h1>Getting Started with Rails</h1>
+<ul>
+	<li>Take Baby Steps in Iterations</li>
+	<li>Naming Conventions<br />
+Model &#8594; Singular (Blog)<br />
+Controller &#8594; Plural (Blogs)<br />
+DB Table &#8594; Plural (blogs)</li>
+</ul>
+<p>Try it in script/console:<br />
+<code>"song".pluralize</code></p>
+<ul>
+	<li>Using Git<br />
+<code>ruby script/generate -g controller songs</code></li>
+</ul>
+</div>
+<div class="slide">
+<h1>The Rails Landscape</h1>
+<p><code>rails -d mysql myproject</code></p>
+<p><img src="../ui/default/images/rails_dir.png" width="473" height="336" alt="Rails Dir" /></p>
+</div>
+<div class="slide">
+<h1>Gems</h1>
+<ul>
+	<li>Gems are packaged Ruby &#8220;add-ons&#8221;<br />
+<code>gem install rails</code></li>
+	<li>Gems contain documentation<br />
+<code>gem server</code> &#8594; http://localhost:8808</li>
+</ul>
+</div>
+<div class="slide">
+<h1>Script Console</h1>
+<ul>
+	<li>Interactive Rails</li>
+	<li>Can handle any Rails operation</li>
+	<li><span class="caps">VERY</span> useful development tool</li>
+	<li>Useful for interacting with model/controller</li>
+</ul>
+<p><code>ruby script/console</code></p>
+</div>
+<div class="slide">
+<h1>Script Server</h1>
+<ul>
+	<li>Starts WEBrick server and Mongrels</li>
+	<li>Useful for debugging</li>
+	<li>Built into Rails</li>
+	<li>No need for Apache server</li>
+</ul>
+<p><code>ruby script/server</code></p>
+</div>
+<div class="slide">
+<h1>Scaffolding</h1>
+<ul>
+	<li>Quickly gets an app up and running</li>
+	<li>Automagically sets up <span class="caps">CRUD</span> operations</li>
+	<li>Scaffolding is <span class="caps">EVIL</span></li>
+</ul>
+<p><code>ruby script/generate scaffold blog title:string body:text</code></p>
+<p><code>rake db:migrate</code></p>
+<p>View all available rake commands (Rake is the Ruby version of Make)<br />
+<code>rake -T</code></p>
+</div>
+<div class="slide">
+<h1>Scaffold Actions for Blogs</h1>
+<p><code>index</code> &#8594; list all blogs</p>
+<p><code>show</code> &#8594; show one blog&#8217;s details</p>
+<p><code>new</code> &#8594; show a form for creating a new blog</p>
+<p><code>create</code> &#8594; insert a new blog into the database</p>
+<p><code>edit</code> &#8594; show a form for editing a blog</p>
+<p><code>update</code> &#8594; update the blog in the database</p>
+<p><code>destroy</code> &#8594; deletes a blog from the database</p>
+</div>
+<div class="slide">
+<h1>Rails Helpers</h1>
+<p>There are many helpers built-in to Rails<br />
+<code>number_to_currency(185)</code> &#8594; $185.00<br />
+<code>number_to_phone(8889878474)</code> &#8594; 888-987-8474</p>
+</div>
+<div class="slide">
+<h1>Custom Helpers</h1>
+<ul>
+	<li>Help keep your projects <span class="caps">DRY</span></li>
+	<li>Code is automagically included into views</li>
+</ul>
+<p><code>&lt;%= price(song.price) %&gt;</code><br />
+<div class="code-normal"></p>
+<pre name="code" class="ruby:nogutter:nocontrols">module SongsHelper
+  def price(value)
+    value == 0 ? "FREE!" :
+    number_to_currency(value)
+  end
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/songs_helper.rb">code/songs_helper.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>Partials</h1>
+<ul>
+	<li>Help keep your projects <span class="caps">DRY</span></li>
+	<li>Similar to <span class="caps">PHP</span> includes</li>
+</ul>
+<p>Save contextual navigation as a partial in the /view/blogs directory<br />
+<code>_blog_nav.html.erb</code></p>
+<p>Display the navigation in the songs view<br />
+<code>&lt;%= render :partial =&gt; 'blog_nav' %&gt;</code></p>
+</div>
+<div class="title slide">
+<h1>Rails Migrations</h1>
+<ul>
+	<li>Used to modify the database schema</li>
+	<li>Version control for your database schema</li>
+	<li>Database independent</li>
+	<li>Repeatable</li>
+</ul>
+</div>
+<div class="slide">
+<h1>Generating a Migration</h1>
+<p>Generate the migration<br />
+<code>script/generate migration add_blog_id_column_to_comments blog_id:string</code></p>
+<p>Edit the migration file if necessary<br />
+<code>db/migrate/XXXXXXXXXX_add_blog_id_column_to_comments.rb</code></p>
+<p>If the proper naming convention is used, it is unnecessary to edit the migration before running</p>
+<p>Run the migration<br />
+<code>rake db:migrate</code></p>
+</div>
+<div class="slide">
+<h1>Migrating Up and Down</h1>
+<p>Accesses the self.up method to migrate up<br />
+<code>rake db:migrate</code></p>
+<p>Accesses the self.down method to migrate down and revert the migration<br />
+<code>rake db:migrate VERSION=XXXXXXXXXX</code></p>
+<p>More options available:<br />
+<code>rake -T</code></p>
+</div>
+<div class="title slide">
+<h1>Rails Models</h1>
+<ul>
+	<li>Model is the gatekeeper to enterprise data</li>
+	<li>Validation are business rules in model</li>
+</ul>
+</div>
+<div class="slide">
+<h1>Validations</h1>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">class Song &lt; ActiveRecord::Base
+
+  validates_presence_of     :title
+  validates_numericality_of :duration
+  validates_format_of       :duration,
+                            :with =&gt; /\d\d:\d\d:\d\d/
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/songs_validation.rb">code/songs_validation.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>Default Finder Methods</h1>
+<ul>
+	<li>show method returns all blogs that match :id</li>
+	<li>Rails usually puts these simple methods in the controller</li>
+</ul>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">class BlogsController &lt; ApplicationController
+  def show
+    @blog = Blog.find(params[:id])
+  end
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/blogs_controller.rb">code/blogs_controller.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>Custom Finder Methods</h1>
+<ul>
+	<li>Perform more complex business operations</li>
+	<li>These methods are best stored in the model</li>
+	<li>Keep controller clean, place business login in Model</li>
+</ul>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">class Blog &lt; ActiveRecord::Base
+  def self.find_future_blogs
+    find(:all,
+         :order =&gt; "updated_at",
+         :conditions =&gt; ['updated_at &gt;= ?', Time.now])
+  end
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/blog_model_custom.rb">code/blog_model_custom.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>Model Finder Methods</h1>
+<p><code>find(:first, criteria)</code><br />
+Finds first row matching criteria</p>
+<p><code>find(:last, criteria)</code><br />
+Finds last row matching criteria</p>
+<p><code>find(:all, criteria)</code><br />
+Finds all rows matching criteria</p>
+</div>
+<div class="slide">
+<h1>Example Model Finders</h1>
+<p><code>blog = Blog.find(123)</code><br />
+Finds the blog with id of 123</p>
+<p><code>blog = Blog.find_by_title("My Blog")</code><br />
+Finds the blog named &#8220;My Blog&#8221;</p>
+</div>
+<div class="slide">
+<h1><span class="caps">SQL</span> Operations</h1>
+<p><code>blog = Blog.find(:all, :order =&gt; "title asc")</code><br />
+Find all blogs, order by title ascending</p>
+<p><code>blog = Blog.find(:all, :order =&gt; "created_at", :limit =&gt; 5)</code><br />
+Find all blogs, order by timestamp and only show the first 5</p>
+</div>
+<div class="title slide">
+<h1>Rails View Layouts</h1>
+<ul>
+	<li>Layouts live in <code>app/views/layouts</code></li>
+	<li><code>application.html.erb</code> is the main application layout</li>
+	<li><code>blogs.html.erb</code> is the layout for the blogs controller</li>
+	<li>If Rails cannot find a controller layout, it will default to <code>application.html.erb</code></li>
+</ul>
+</div>
+<div class="slide">
+<h1>Layout File</h1>
+<p><span class="caps">ERB</span> Tags used for inline Ruby code</p>
+<p>This produces inline html from Ruby<br />
+<code>&lt;%= %&gt;</code></p>
+<p>This encapsulated plain old Ruby code<br />
+<code>&lt;% %&gt;</code></p>
+<p>Action output from a Controller will go here:<br />
+<code>&lt;%= yield %&gt;</code></p>
+</div>
+<div class="slide">
+<h1>Flash</h1>
+<p>Not to be confused with Adobe Flash</p>
+<p>Rails produces messages using flash<br />
+<code>&lt;%= flash[:notice] %&gt;</code></p>
+<p>Flash can be declared in a method defined in the Model<br />
+<code>flash[:notice] = "Your blog was successfully updated"</code></p>
+</div>
+<div class="title slide">
+<h1><span class="caps">REST</span> and Rails Routes</h1>
+<ul>
+	<li>Representational state transfer (REST)</li>
+	<li>Outlines how resources are defined and addressed</li>
+</ul>
+<p>Show all routes<br />
+<code>rake routes</code></p>
+<p>Default Route<br />
+<code>http://localhost:3000/blogs/show/123</code></p>
+<ul>
+	<li><code>blogs</code> is the controller</li>
+	<li><code>show</code> is the action</li>
+	<li><code>123</code> is the id of the blog entry</li>
+</ul>
+</div>
+<div class="slide">
+<h1>Custom Routes</h1>
+<div class="code-normal">
+<pre name="code" class="ruby:nogutter:nocontrols">ActionController::Routing::Routes.draw do |map|
+  map.resources :comments
+  map.resources :blogs
+
+  map.connect 'newblog', :controller =&gt; 'blogs', :action =&gt; 'new'
+  map.root :controller =&gt; 'blogs'
+
+  map.connect ':controller/:action/:id'
+  map.connect ':controller/:action/:id.:format'
+end
+</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/routes.rb">code/routes.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>RESTful URLs</h1>
+<p>Browsers are dumb, they can only do a few operations:</p>
+<p><code>GET      http://localhost:3000/blogs/123</code></p>
+<p><code>POST     http://localhost:3000/blogs</code></p>
+<p><code>PUT      http://localhost:3000/blogs/123</code></p>
+<p><code>DELETE   http://localhost:3000/blogs/123</code></p>
+</div>
+<div class="slide">
+<h1>Rails to the Rescue</h1>
+<table id="crud">
+<tr>
+    <td>&nbsp;</td><td><strong><span class="caps">SQL</span></strong></td><td><strong><span class="caps">HTTP</span></strong></td><td><strong>AR</strong></td><td><strong>Action</strong></td>
+</tr>
+<tr>
+    <td><strong>C</strong>reate</td><td><span class="caps">INSERT</span></td><td><span class="caps">POST</span></td><td>create</td><td>create</td>
+</tr>
+<tr>
+    <td><strong>R</strong>ead</td><td><span class="caps">SELECT</span></td><td><span class="caps">GET</span></td><td>find</td><td>show</td>
+</tr>
+<tr>
+    <td><strong>U</strong>pdate</td><td><span class="caps">UPDATE</span></td><td><span class="caps">PUT</span></td><td>update</td><td>update</td>  
+</tr>
+<tr>
+    <td><strong>D</strong>estroy</td><td><span class="caps">DELETE</span></td><td><span class="caps">DELETE</span></td><td>destroy</td><td>destroy</td>
+</tr>
+</table>
+</div>
+<div class="slide">
+<h1>RESTful create</h1>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">&lt;% form_for @blog do |f| -%&gt;
+  Title: &lt;%= f.text_field :title %&gt;
+  Body: &lt;%= f.text_area :body %&gt;
+  &lt;%= form.submit 'Create' %&gt;
+&lt;% end -%&gt;
+</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/forms.rb">code/forms.rb</a></div></p>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">def create
+  @blog = Blog.create(params[:blog])
+end
+</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/forms.rb">code/forms.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>RESTful show</h1>
+<pre><code>&lt;%= link_to blog.title, blog_path(@blog) %&gt;</code></pre>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">class BlogsController &lt; ApplicationController
+  def show
+    @blog = Blog.find(params[:id])
+  end
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/blogs_controller.rb">code/blogs_controller.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>RESTful update</h1>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">&lt;% form_for @blog do |f| -%&gt;
+  &lt;%= f.text_field :title %&gt;
+  &lt;%= f.text_area :body %&gt;
+  &lt;%= form.submit 'Update' %&gt;
+&lt;% end -%&gt;
+</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/forms.rb">code/forms.rb</a></div></p>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">def update
+  @blog = Blog.find(params[:id])
+  @blog.upate_attributes(params[:event])
+end
+</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/forms.rb">code/forms.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>RESTful destroy</h1>
+<pre><code>&lt;%= button_to("Delete", blog_url(@blog), :method =&gt; :delete) %&gt;</pre><p></code><br />
+<div class="code-large"></p>
+<pre name="code" class="ruby:nogutter:nocontrols">def destroy
+  @blog = Blog.find(params[:id])
+  @blog.destroy
+end
+</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/forms.rb">code/forms.rb</a></div></p>
+</div>
+<div class="title slide">
+<h1>Using Forms in Rails</h1>
+<p>Linking to an Action</p>
+<p><code>&lt;%= link_to "Add New Blog", new_blog_path %&gt;</code></p>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">class BlogsController &lt; ApplicationController
+  def new
+    @blog = Blog.new
+  end
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/blogs_new.rb">code/blogs_new.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>Active Record Model Forms</h1>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">&lt;% form_for @blog do |f| -%&gt;
+  Title: &lt;%= f.text_field :title %&gt;
+  Body: &lt;%= f.text_area :body %&gt;
+  &lt;%= form.submit 'Create' %&gt;
+&lt;% end -%&gt;
+</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/forms.rb">code/forms.rb</a></div></p>
+<div style="font-size:24px">
+<pre><code>
+  &lt;form action="/blogs" class="new_blog" id="new_blog" method="post"&gt;
+      Title: &lt;input id="blog_title" name="blog[title]" size="30" type="text" /&gt;
+      Body: &lt;textarea cols="40" id="blog_body" name="blog[body]" rows="20"&gt;&lt;/textarea&gt;
+      &lt;input id="blog_submit" name="commit" type="submit" value="Create" /&gt;
+  &lt;/form&gt;
+</code></pre>
+</div>
+</div>
+<div class="slide">
+<h1>Handling a Form Submit</h1>
+<div style="float:right"><img src="../ui/default/images/new_blog.png" width="357" height="449" alt="New Blog" /></div>
+<div class="code-normal">
+<pre name="code" class="ruby:nogutter:nocontrols">params =&gt; {
+  :blog =&gt;
+  {:title =&gt; "My First Blog",
+    :body =&gt; "blah blah blah"
+    },
+    :commit =&gt; "Create",
+    :action =&gt; "create",
+    :controller =&gt; "blogs"
+}
+</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/blogs_create.rb">code/blogs_create.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>Passing the Params to the Controller</h1>
+<div class="code-small">
+<pre name="code" class="ruby:nogutter:nocontrols">class BlogsController &lt; ApplicationController
+  def create
+    @blog = Blog.new(params[:blog])
+
+    respond_to do |format|
+      if @blog.save
+        flash[:notice] = 'Blog was successfully created.'
+        format.html { redirect_to(@blog) }
+      else
+        format.html { render :action =&gt; "new" }
+      end
+    end
+end
+</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/blogs_create.rb">code/blogs_create.rb</a></div></p>
+</div>
+<div class="title slide">
+<h1>Associations</h1>
+<ul>
+	<li>Relational database</li>
+	<li>Foreign Keys to link table data</li>
+	<li>One-to-Many</li>
+	<li>Many-to-Many</li>
+</ul>
+</div>
+<div class="slide">
+<h1>One-to-Many Association</h1>
+<p>Let&#8217;s create Comments for each Blog</p>
+<p><img src="../ui/default/images/MVC_associations.jpg" width="610" height="408" alt="MVC Associations" /></p>
+</div>
+<div class="slide">
+<h1>One-to-Many Relationship</h1>
+<p><img src="../ui/default/images/db_schema.jpg" width="688" height="325" alt="Db Schema" /></p>
+</div>
+<div class="slide">
+<h1>One-to-Many Migration</h1>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">class AddBlogIdColumnToComments &lt; ActiveRecord::Migration
+  def self.up
+    add_column :comments, :blog_id, :integer
+  end
+
+  def self.down
+    remove_column :comments, :blog_id
+  end
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/comment_migration.rb">code/comment_migration.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>Updating the Controller</h1>
+<p><code>&lt;%= link_to "Comment!", new_comment_path(:blog_id =&gt; blog.id) %&gt;</code></p>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">def new
+  @blog = Blog.find(params[:blog_id])
+  @comment = Comment.new
+
+  respond_to do |format|
+    format.html # new.html.erb
+    format.xml  { render :xml =&gt; @comment }
+  end
+end
+</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/comments_controller.rb">code/comments_controller.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>Updating the Form</h1>
+<ul>
+	<li>Simply add a hidden field to the form</li>
+	<li>Passes the blog_id to the comment controller</li>
+	<li>blog_id is inserted into the comments table via the create method<br />
+<p>&nbsp;</p><br />
+<pre><code>&lt;%= hidden_field_tag :blog_id, @blog.id) %&gt;</code></pre></li>
+</ul>
+</div>
+<div class="slide">
+<h1>Adding Comments to blogs</h1>
+<div class="code-small">
+<pre name="code" class="ruby:nogutter:nocontrols">def create
+  @blog = Blog.find(params[:blog_id])
+  @comment = @blog.comments.build(params[:comment])
+
+  respond_to do |format|
+    if @comment.save
+      flash[:notice] = 'Comment was successfully created.'
+      format.html { redirect_to(@comment) }
+    else
+      format.html { render :action =&gt; "new" }
+    end
+  end
+end
+</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/comments_controller.rb">code/comments_controller.rb</a></div></p>
+</div>
+<div class="title slide">
+<h1>Testing</h1>
+<ul>
+	<li>Testing in development is cheaper than testing in production</li>
+	<li>Error-driven testing sucks! Error-driven testing = Jode</li>
+	<li>Test and test often</li>
+	<li>Unit Tests &#8594; testing on the model</li>
+	<li>Functional Tests &#8594; testing on the controller</li>
+	<li>Third party testing frameworks (RSpec, Shoulda)</li>
+	<li>Rcov test coverage gem, http://eigenclass.org/hiki.rb?rcov</li>
+</ul>
+<p><img style="float:right; margin-top: -400px;" src="../ui/default/images/clippy.png" width="400" height="419" alt="Clippy" /></p>
+</div>
+<div class="slide">
+<h1>Basic Unit Testing</h1>
+<ul>
+	<li>If you do any one test, test your Unit</li>
+	<li>Go ahead and laugh, cause &#8220;test your unit&#8221; is funny</li>
+</ul>
+<p>Run all unit tests:<br />
+<code>rake test:units</code></p>
+</div>
+<div class="slide">
+<h1>Basic Unit Testing</h1>
+<ul>
+	<li>If you do any one test, test your Unit</li>
+	<li>Go ahead and laugh, cause &#8220;test your unit&#8221; is funny</li>
+</ul>
+<p><strong>THAT&#8217;S <span class="caps">WHAT</span> <span class="caps">SHE</span> <span class="caps">SAID</span></strong><br />
+  <br />
+Run all unit tests:<br />
+<code>rake test:units</code></p>
+</div>
+<div class="slide">
+<h1>Custom Finder Test</h1>
+<p>This checks to see if the recent_blogs method works as intended</p>
+<div class="code-normal">
+<pre name="code" class="ruby:nogutter:nocontrols">def test_recent
+  Blog.delete_all
+  
+  b= Blog.new(:title =&gt; "My Test blog",
+              :body =&gt; "blah blah",
+              :created_at =&gt; "2008-05-10 17:31:51",
+              :updated_at =&gt; "2008-05-10 17:31:51")
+  assert b.save, b.errors.full_messages
+  assert_equal(1, Blog.recent_blogs.size)
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/unit_test.rb">code/unit_test.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>Basic Functional Testing</h1>
+<p>Simulates <span class="caps">HTTP</span> <span class="caps">GET</span> Request</p>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">def test_should_get_index
+  get :index
+  assert_response :success
+  assert_not_nil assigns(:blogs)
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/functional_test.rb">code/functional_test.rb</a></div></p>
+<p>Run all functional tests:<br />
+<code>rake test:functionals</code></p>
+</div>
+<div class="slide">
+<h1>Test Fixtures</h1>
+<p>A fixture is <span class="caps">YAML</span> file that contains sample data to use for testing</p>
+<div class="code-normal">
+<pre name="code" class="ruby:nogutter:nocontrols">one:
+  title: My First Blog
+  body: blah blah blah
+
+two:
+  title: My Cool Blog
+  body: blah blah blah</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/blogs.yml">code/blogs.yml</a></div></p>
+<p>To use, place this at the top of your *_test.rb file: <code>fixtures :blogs.yml</code></p>
+</div>
+<div class="title slide">
+<h1><span class="caps">AJAX</span></h1>
+<ul>
+	<li>Rails defaults to Prototype, Scriptaculous</li>
+	<li>jRails jQuery drop-in replacement</li>
+	<li>Get it working without <span class="caps">AJAX</span> first!</li>
+	<li>Take baby steps in your <span class="caps">AJAX</span> iteration</li>
+</ul>
+<p><code>&lt;%= javascript_include_tag :defaults, :cache =&gt; :true %&gt;</code></p>
+</div>
+<div class="slide">
+<h1>Functional Use of <span class="caps">AJAX</span></h1>
+<ul>
+	<li>Notification</li>
+	<li>Add, Edit, Delete without a browser refresh</li>
+	<li>Dynamic page updates</li>
+	<li>Drag-and-Drop</li>
+</ul>
+<p><span class="caps">AJAX</span> should have a purpose, not &#8220;just because you can&#8221;.</p>
+<p>Simple Example:<br />
+<code>&lt;%= link_to_function ("Posts", "Element.toggle('list')") %&gt;</code></p>
+</div>
+<div class="title slide">
+<h1>Your Rails Environment</h1>
+<ul>
+	<li>Development</li>
+	<li>Staging</li>
+	<li>Production</li>
+	<li>Know your Rails environment, deploy wisely</li>
+	<li>Conflicts between Rails version, Ruby version, and Gems</li>
+</ul>
+</div>
+<div class="slide">
+<h1>Development Environment</h1>
+<ul>
+	<li>Default Rails environment &#8220;out-of-the-box&#8221;</li>
+	<li>No caching</li>
+	<li>Class reloading</li>
+	<li>Verbose logging for debugging</li>
+</ul>
+<p><code>RAILS_ENV=development</code></p>
+</div>
+<div class="slide">
+<h1>Production Environment</h1>
+<ul>
+	<li>Caching for optimization</li>
+	<li>No class reloading</li>
+	<li>Minimal logging</li>
+	<li>Friendly error pages</li>
+</ul>
+<p>Dreamhost runs in Production Mode by default since it runs Passenger (mod_rails)</p>
+<p><code>RAILS_ENV=production</code></p>
+</div>
+<div class="slide">
+<h1>Ruby on Rails Servers</h1>
+<p><strong>Mongrel</strong></p>
+<ul>
+	<li>Ruby/C webserver</li>
+	<li>Tested and Proven</li>
+	<li>Installed as a gem, extensible with gem plugin</li>
+</ul>
+<p><strong>Passenger (mod_rails)</strong></p>
+<ul>
+	<li>The new kid on the block</li>
+	<li>Easier to setup than a Mongrel cluster</li>
+	<li>Works similar to <span class="caps">PHP</span> with Apache<br />
+</div><br />
+<div class="slide"></li>
+</ul>
+<h1 class="slide0">Using GitHub</h1>
+<ul>
+	<li>GitHub is our <span class="caps">SCM</span> of record</li>
+	<li>The codebase on GitHub should always be the latest copy</li>
+</ul>
+<p>To checkout a copy from GitHub<br />
+<pre><code>git clone git@github.com:scullygroup/PROJECTNAME.git</code></pre></p>
+<p>To update your existing git copy from the GitHub repo<br />
+<pre><code>git pull</code></pre></p>
+<p>To commit your changes back to the repo<br />
+<pre><code>git push</code></pre></p>
+</div>
+<div class="slide">
+<h1>Rails and Git</h1>
+<p>You can automatically add any code produced from a script/generate task<br />
+<code>ruby script/generate -g scaffold blog title:string body:text</code></p>
+<p>Commit small incremental changes locally<br />
+<code>git add .</code><br />
+<code>git commit -m "I added a really awesome feature"</code></p>
+<p>Push changes to repo when you hit a milestone<br />
+<code>git push</code></p>
+<p>This batch pushes all commits you have made locally since your last push to the repo</p>
+</div>
+<div class="title slide">
+<h1>Deploying with Capistrano</h1>
+<ul>
+	<li>One-step deploy</li>
+	<li>Exports code from <span class="caps">SVN</span> or <span class="caps">GIT</span></li>
+	<li>Maintains releases in the web directory</li>
+	<li>If your app blows up, simply roll it back</li>
+	<li>You can add your own special tasks to the deploy script</li>
+	<li>You can deploy your app, web, and db to one server or different servers with the <span class="caps">SAME</span> <span class="caps">SINGLE</span> <span class="caps">COMMAND</span></li>
+</ul>
+<p><code>cap deploy</code></p>
+</div>
+<div class="slide">
+<h1>Getting Started With Capistrano</h1>
+<p>Install as a gem<br />
+<code>gem install capistrano</code></p>
+<p>Initialize your project<br />
+<code>capify .</code></p>
+<p>Edit your deploy.rb file in the /config directory</p>
+<p>Setup the remote server, then perform a cold deploy<br />
+<code>cap deploy:setup</code><br />
+<code>cap deploy:cold</code></p>
+<p>Let &#8217;er rip!<br />
+<code>cap deploy</code></p>
+</div>
+<div class="title slide">
+<h1>Resources</h1>
+<div style ="font-size:20px">
+<p><strong>Rails Websites</strong><br />
+Ruby on Rails, http://www.rubyonrails.org/</p>
+<p><strong><span class="caps">API</span></strong><br />
+http://www.railsbrain.com/<br />
+http://www.rubybrain.com/</p>
+<p><strong>Blogs</strong><br />
+Giant Robots, http://giantrobots.thoughtbot.com/<br />
+Ruby on Rails, http://weblog.rubyonrails.org/<br />
+Pragmatic Programmers, http://www.pragprog.com/</p>
+<p><strong>Podcasts</strong><br />
+Learning Rails, http://www.buildingwebapps.com/course<br />
+Rails Envy, http://www.railsenvy.com/<br />
+Rails Podcasts, http://podcast.rubyonrails.com/</p>
+<p><strong>Cheatsheets, Tutorials</strong><br />
+http://peepcode.com/<br />
+http://dizzy.co.uk/cheatsheets</p>
+<p></div></div></p>
+
+  <!-- Syntax Highlighter -->
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shCore.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushCpp.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushRuby.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushXml.js"></script>
+  <script language="javascript">
+  dp.SyntaxHighlighter.ClipboardSwf = '/flash/clipboard.swf';
+  dp.SyntaxHighlighter.HighlightAll('code');
+  </script>
+</div>
+</body>
+</html>

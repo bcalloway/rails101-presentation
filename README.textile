@@ -1,0 +1,4 @@
+h1. Rails Presentation
+
+<p>A short, quick Rails 101 presentation I gave to my studio.</p>
+<p>Slides were prepared using the awesome "Codex":http://github.com/pragdave/codex/tree application by Dave Thomas.</p>

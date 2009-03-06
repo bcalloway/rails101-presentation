@@ -1,0 +1,27 @@
+h1. Using GitHub
+
+* GitHub is our SCM of record
+* The codebase on GitHub should always be the latest copy
+
+To checkout a copy from GitHub
+<pre><code>git clone git@github.com:scullygroup/PROJECTNAME.git</code></pre>
+
+To update your existing git copy from the GitHub repo
+<pre><code>git pull</code></pre>
+
+To commit your changes back to the repo
+<pre><code>git push</code></pre>
+
+h1. Rails and Git
+
+You can automatically add any code produced from a script/generate task
+@ruby script/generate -g scaffold blog title:string body:text@
+
+Commit small incremental changes locally
+@git add .@
+@git commit -m "I added a really awesome feature"@
+
+Push changes to repo when you hit a milestone
+@git push@
+
+This batch pushes all commits you have made locally since your last push to the repo

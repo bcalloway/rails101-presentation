@@ -1,0 +1,29 @@
+h1. Rails View Layouts
+
+* Layouts live in @app/views/layouts@
+* @application.html.erb@ is the main application layout
+* @blogs.html.erb@ is the layout for the blogs controller
+* If Rails cannot find a controller layout, it will default to @application.html.erb@
+
+h1. Layout File
+
+ERB Tags used for inline Ruby code
+
+This produces inline html from Ruby
+@<%= %>@
+
+This encapsulated plain old Ruby code
+@<% %>@
+
+Action output from a Controller will go here:
+@<%= yield %>@
+
+h1. Flash
+
+Not to be confused with Adobe Flash
+
+Rails produces messages using flash
+@<%= flash[:notice] %>@
+
+Flash can be declared in a method defined in the Model
+@flash[:notice] = "Your blog was successfully updated"@

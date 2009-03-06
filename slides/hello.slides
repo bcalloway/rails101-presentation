@@ -1,0 +1,52 @@
+h1. Hello Rails!
+
+<strong>Rails Values</strong>
+* Don't Repeat Yourself (DRY)
+* Convention Over Configuration (don't reinvent the wheel)
+* Productive
+* Agile
+
+h1. Rails MVC Framework
+
+* Full Stack, Baby!
+* Fully Integrated and Seamless
+
+<img style="margin-left: 100px" src="../ui/default/images/MVC.jpg" width="610" height="408" alt="MVC" />
+
+h1. Controller
+
+The Controller is the "Traffic Cop"
+
+http://localhost:3000/@blogs@/show/123
+
+:code code/blogs_controller.rb[class=code-large]
+
+h1. Controller - Action
+
+The Controller is the "Traffic Cop"
+
+http://localhost:3000/blogs/@show@/123
+
+:code code/blogs_controller.rb[class=code-large]
+
+h1. Controller - Parameter
+
+The Controller is the "Traffic Cop"
+
+http://localhost:3000/blogs/show/@123@
+
+:code code/blogs_controller.rb[class=code-large]
+
+h1. Views (Templates)
+
+* html.erb (for HTML pages)
+* js.rjs (for AJAX pages)
+
+:code code/view.html.erb[class=code-large]
+
+h1. Models
+
+* Handle business logic
+* Gatekeeper to the data
+
+:code code/blog_model.rb[class=code-large]

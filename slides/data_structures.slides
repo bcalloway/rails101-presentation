@@ -1,0 +1,25 @@
+h1. Ruby Data Structures
+
+* Similar to other languages such as PHP
+* Shares same rules and operators as other languages
+* Bonus: it's all about the objects
+
+h1. Arrays
+
+* Ordered collection of arbitrary objects
+* Indexed by integers
+
+@arr = ["dog", "cat", "robot"]@
+@arr[0] = dog@
+@arr[1] = cat@
+
+h1. Hashes
+
+* Unordered collection indexed by artbitrary key
+* Keys must be unique
+* Keys and values can just about any object
+
+@animals = { "dog" => "canine", "cat" => "feline"}@
+@puts animals["cat"]@ => "feline"
+
+<div class="note">This is how Rails stores database values in an object (hint, hint)</div>

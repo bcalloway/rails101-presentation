@@ -1,0 +1,31 @@
+h1. Using Forms in Rails
+
+Linking to an Action
+
+@<%= link_to "Add New Blog", new_blog_path %>@
+
+:code code/blogs_new.rb[class=code-large]
+
+h1. Active Record Model Forms
+
+:code code/forms.rb[new class=code-large]
+
+<div style="font-size:24px">
+<pre><code>
+  <form action="/blogs" class="new_blog" id="new_blog" method="post">
+      Title: <input id="blog_title" name="blog[title]" size="30" type="text" />
+      Body: <textarea cols="40" id="blog_body" name="blog[body]" rows="20"></textarea>
+      <input id="blog_submit" name="commit" type="submit" value="Create" />
+  </form>
+</code></pre>
+</div>
+
+h1. Handling a Form Submit
+
+<div style="float:right"><img src="../ui/default/images/new_blog.png" width="357" height="449" alt="New Blog" /></div>
+
+:code code/blogs_create.rb[params class=code-normal]
+
+h1. Passing the Params to the Controller
+
+:code code/blogs_create.rb[create class=code-small]

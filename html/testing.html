@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Intro to Ruby on Rails</title>
+<!-- metadata -->
+<meta name="generator" content="S5" />
+<meta name="version" content="S5 1.1" />
+<meta name="presdate" content="&date" />
+<meta name="author" content="Brandon Calloway" />
+<meta name="organization" content="&organization;" />
+<meta name="company" content="The Scully Group" />
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<link rel="stylesheet" href="../ui/default/slides.css" type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="../ui/default/outline.css" type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="../lib/stylesheets/print.css" type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="../ui/default/opera.css" type="text/css" media="projection" id="operaFix" />
+
+<link rel="stylesheet" href="../lib/stylesheets/pressie.css" type="text/css" />
+
+<!-- S5 JS -->
+<script src="../ui/default/slides.js" type="text/javascript"></script>
+
+<!-- Syntax Highlighter -->
+<link rel="stylesheet"  href="../dp.SyntaxHighlighter/Styles/SyntaxHighlighter.css"></link>
+
+</head>
+<body>
+
+<div class="layout">
+<div id="controls"><!-- DO NOT EDIT --></div>
+<div id="currentSlide"><!-- DO NOT EDIT --></div>
+<div id="header"></div>
+<div id="footer">
+<h2>Copyright &copy; 2008 The Scully Group</h2>
+</div>
+
+</div>
+
+
+<div class="presentation">
+<div class="slide">
+<h1>Testing</h1>
+<ul>
+	<li>Testing in development is cheaper than testing in production</li>
+	<li>Error-driven testing sucks! Error-driven testing = Jode</li>
+	<li>Test and test often</li>
+	<li>Unit Tests &#8594; testing on the model</li>
+	<li>Functional Tests &#8594; testing on the controller</li>
+	<li>Third party testing frameworks (RSpec, Shoulda)</li>
+	<li>Rcov test coverage gem, http://eigenclass.org/hiki.rb?rcov</li>
+</ul>
+<p><img style="float:right; margin-top: -400px;" src="../ui/default/images/clippy.png" width="400" height="419" alt="Clippy" /></p>
+</div>
+<div class="slide">
+<h1>Basic Unit Testing</h1>
+<ul>
+	<li>If you do any one test, test your Unit</li>
+	<li>Go ahead and laugh, cause &#8220;test your unit&#8221; is funny</li>
+</ul>
+<p>Run all unit tests:<br />
+<code>rake test:units</code></p>
+</div>
+<div class="slide">
+<h1>Basic Unit Testing</h1>
+<ul>
+	<li>If you do any one test, test your Unit</li>
+	<li>Go ahead and laugh, cause &#8220;test your unit&#8221; is funny</li>
+</ul>
+<p><strong>THAT&#8217;S <span class="caps">WHAT</span> <span class="caps">SHE</span> <span class="caps">SAID</span></strong><br />
+  <br />
+Run all unit tests:<br />
+<code>rake test:units</code></p>
+</div>
+<div class="slide">
+<h1>Custom Finder Test</h1>
+<p>This checks to see if the recent_blogs method works as intended</p>
+<div class="code-normal">
+<pre name="code" class="ruby:nogutter:nocontrols">def test_recent
+  Blog.delete_all
+  
+  b= Blog.new(:title =&gt; "My Test blog",
+              :body =&gt; "blah blah",
+              :created_at =&gt; "2008-05-10 17:31:51",
+              :updated_at =&gt; "2008-05-10 17:31:51")
+  assert b.save, b.errors.full_messages
+  assert_equal(1, Blog.recent_blogs.size)
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/unit_test.rb">code/unit_test.rb</a></div></p>
+</div>
+<div class="slide">
+<h1>Basic Functional Testing</h1>
+<p>Simulates <span class="caps">HTTP</span> <span class="caps">GET</span> Request</p>
+<div class="code-large">
+<pre name="code" class="ruby:nogutter:nocontrols">def test_should_get_index
+  get :index
+  assert_response :success
+  assert_not_nil assigns(:blogs)
+end</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/functional_test.rb">code/functional_test.rb</a></div></p>
+<p>Run all functional tests:<br />
+<code>rake test:functionals</code></p>
+</div>
+<div class="slide">
+<h1>Test Fixtures</h1>
+<p>A fixture is <span class="caps">YAML</span> file that contains sample data to use for testing</p>
+<div class="code-normal">
+<pre name="code" class="ruby:nogutter:nocontrols">one:
+  title: My First Blog
+  body: blah blah blah
+
+two:
+  title: My Cool Blog
+  body: blah blah blah</pre><p></div><div class="codeurl"><a href="txmt://open?url=file:///Users/bcalloway/Sites/RailsPresentation/code/blogs.yml">code/blogs.yml</a></div></p>
+<p>To use, place this at the top of your *_test.rb file: <code>fixtures :blogs.yml</code></div></p>
+
+  <!-- Syntax Highlighter -->
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shCore.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushCpp.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushRuby.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushXml.js"></script>
+  <script language="javascript">
+  dp.SyntaxHighlighter.ClipboardSwf = '/flash/clipboard.swf';
+  dp.SyntaxHighlighter.HighlightAll('code');
+  </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Intro to Ruby on Rails</title>
+<!-- metadata -->
+<meta name="generator" content="S5" />
+<meta name="version" content="S5 1.1" />
+<meta name="presdate" content="&date" />
+<meta name="author" content="Brandon Calloway" />
+<meta name="organization" content="&organization;" />
+<meta name="company" content="The Scully Group" />
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<link rel="stylesheet" href="../ui/default/slides.css" type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="../ui/default/outline.css" type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="../lib/stylesheets/print.css" type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="../ui/default/opera.css" type="text/css" media="projection" id="operaFix" />
+
+<link rel="stylesheet" href="../lib/stylesheets/pressie.css" type="text/css" />
+
+<!-- S5 JS -->
+<script src="../ui/default/slides.js" type="text/javascript"></script>
+
+<!-- Syntax Highlighter -->
+<link rel="stylesheet"  href="../dp.SyntaxHighlighter/Styles/SyntaxHighlighter.css"></link>
+
+</head>
+<body>
+
+<div class="layout">
+<div id="controls"><!-- DO NOT EDIT --></div>
+<div id="currentSlide"><!-- DO NOT EDIT --></div>
+<div id="header"></div>
+<div id="footer">
+<h2>Copyright &copy; 2008 The Scully Group</h2>
+</div>
+
+</div>
+
+
+<div class="presentation">
+<div class="slide">
+<h1>Your Rails Environment</h1>
+<ul>
+	<li>Development</li>
+	<li>Staging</li>
+	<li>Production</li>
+	<li>Know your Rails environment, deploy wisely</li>
+	<li>Conflicts between Rails version, Ruby version, and Gems</li>
+</ul>
+</div>
+<div class="slide">
+<h1>Development Environment</h1>
+<ul>
+	<li>Default Rails environment &#8220;out-of-the-box&#8221;</li>
+	<li>No caching</li>
+	<li>Class reloading</li>
+	<li>Verbose logging for debugging</li>
+</ul>
+<p><code>RAILS_ENV=development</code></p>
+</div>
+<div class="slide">
+<h1>Production Environment</h1>
+<ul>
+	<li>Caching for optimization</li>
+	<li>No class reloading</li>
+	<li>Minimal logging</li>
+	<li>Friendly error pages</li>
+</ul>
+<p>Dreamhost runs in Production Mode by default since it runs Passenger (mod_rails)</p>
+<p><code>RAILS_ENV=production</code></p>
+</div>
+<div class="slide">
+<h1>Ruby on Rails Servers</h1>
+<p><strong>Mongrel</strong></p>
+<ul>
+	<li>Ruby/C webserver</li>
+	<li>Tested and Proven</li>
+	<li>Installed as a gem, extensible with gem plugin</li>
+</ul>
+<p><strong>Passenger (mod_rails)</strong></p>
+<ul>
+	<li>The new kid on the block</li>
+	<li>Easier to setup than a Mongrel cluster</li>
+	<li>Works similar to <span class="caps">PHP</span> with Apache</div></li>
+</ul>
+
+  <!-- Syntax Highlighter -->
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shCore.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushCpp.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushRuby.js"></script>
+  <script language="javascript" src="../dp.SyntaxHighlighter/Scripts/shBrushXml.js"></script>
+  <script language="javascript">
+  dp.SyntaxHighlighter.ClipboardSwf = '/flash/clipboard.swf';
+  dp.SyntaxHighlighter.HighlightAll('code');
+  </script>
+</div>
+</body>
+</html>

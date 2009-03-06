@@ -1,0 +1,27 @@
+h1. Deploying with Capistrano
+
+* One-step deploy
+* Exports code from SVN or GIT
+* Maintains releases in the web directory
+* If your app blows up, simply roll it back
+* You can add your own special tasks to the deploy script
+* You can deploy your app, web, and db to one server or different servers with the SAME SINGLE COMMAND
+
+@cap deploy@
+
+h1. Getting Started With Capistrano
+
+Install as a gem
+@gem install capistrano@
+
+Initialize your project
+@capify .@
+
+Edit your deploy.rb file in the /config directory
+
+Setup the remote server, then perform a cold deploy
+@cap deploy:setup@
+@cap deploy:cold@
+
+Let 'er rip!
+@cap deploy@

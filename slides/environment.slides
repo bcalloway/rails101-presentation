@@ -1,0 +1,39 @@
+h1. Your Rails Environment
+
+* Development
+* Staging
+* Production
+* Know your Rails environment, deploy wisely
+* Conflicts between Rails version, Ruby version, and Gems
+
+h1. Development Environment
+
+* Default Rails environment "out-of-the-box"
+* No caching
+* Class reloading
+* Verbose logging for debugging
+
+@RAILS_ENV=development@
+
+h1. Production Environment
+
+* Caching for optimization
+* No class reloading
+* Minimal logging
+* Friendly error pages
+
+Dreamhost runs in Production Mode by default since it runs Passenger (mod_rails)
+
+@RAILS_ENV=production@
+
+h1. Ruby on Rails Servers
+
+<strong>Mongrel</strong>
+* Ruby/C webserver
+* Tested and Proven
+* Installed as a gem, extensible with gem plugin
+
+<strong>Passenger (mod_rails)</strong>
+* The new kid on the block
+* Easier to setup than a Mongrel cluster
+* Works similar to PHP with Apache

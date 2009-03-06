@@ -1,0 +1,98 @@
+h1. Getting Started with Rails
+
+* Take Baby Steps in Iterations
+* Naming Conventions
+Model -> Singular (Blog)
+Controller -> Plural (Blogs)
+DB Table -> Plural (blogs)
+
+Try it in script/console:
+@"song".pluralize@
+
+* Using Git
+@ruby script/generate -g controller songs@
+
+h1. The Rails Landscape
+
+@rails -d mysql myproject@
+
+<img src="../ui/default/images/rails_dir.png" width="473" height="336" alt="Rails Dir" />
+
+h1. Gems
+
+* Gems are packaged Ruby "add-ons"
+@gem install rails@
+* Gems contain documentation
+@gem server@ -> http://localhost:8808
+
+h1. Script Console
+
+* Interactive Rails
+* Can handle any Rails operation
+* VERY useful development tool
+* Useful for interacting with model/controller
+
+@ruby script/console@
+
+h1. Script Server
+
+* Starts WEBrick server and Mongrels
+* Useful for debugging
+* Built into Rails
+* No need for Apache server
+
+@ruby script/server@
+
+h1. Scaffolding
+
+* Quickly gets an app up and running
+* Automagically sets up CRUD operations
+* Scaffolding is EVIL
+
+@ruby script/generate scaffold blog title:string body:text@
+
+@rake db:migrate@
+
+View all available rake commands (Rake is the Ruby version of Make)
+@rake -T@
+
+h1. Scaffold Actions for Blogs
+
+@index@ -> list all blogs
+
+@show@ -> show one blog's details
+
+@new@ -> show a form for creating a new blog
+
+@create@ -> insert a new blog into the database
+
+@edit@ -> show a form for editing a blog
+
+@update@ -> update the blog in the database
+
+@destroy@ -> deletes a blog from the database
+
+h1. Rails Helpers
+
+There are many helpers built-in to Rails
+@number_to_currency(185)@ -> $185.00
+@number_to_phone(8889878474)@ -> 888-987-8474
+
+h1. Custom Helpers
+
+* Help keep your projects DRY
+* Code is automagically included into views
+
+@<%= price(song.price) %>@
+:code code/songs_helper.rb[class=code-normal]
+
+h1. Partials
+
+* Help keep your projects DRY
+* Similar to PHP includes
+
+Save contextual navigation as a partial in the /view/blogs directory
+@_blog_nav.html.erb@
+
+Display the navigation in the songs view
+@<%= render :partial => 'blog_nav' %>@

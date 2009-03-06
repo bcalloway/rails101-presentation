@@ -1,0 +1,52 @@
+h1. Testing
+
+* Testing in development is cheaper than testing in production
+* Error-driven testing sucks! Error-driven testing = Jode
+* Test and test often
+* Unit Tests -> testing on the model
+* Functional Tests -> testing on the controller
+* Third party testing frameworks (RSpec, Shoulda)
+* Rcov test coverage gem, http://eigenclass.org/hiki.rb?rcov
+
+<img style="float:right; margin-top: -400px;" src="../ui/default/images/clippy.png" width="400" height="419" alt="Clippy" />
+
+h1. Basic Unit Testing
+
+* If you do any one test, test your Unit
+* Go ahead and laugh, cause "test your unit" is funny
+
+Run all unit tests:
+@rake test:units@
+
+h1. Basic Unit Testing
+
+* If you do any one test, test your Unit
+* Go ahead and laugh, cause "test your unit" is funny
+
+<strong>THAT'S WHAT SHE SAID</strong>
+  
+Run all unit tests:
+@rake test:units@
+
+h1. Custom Finder Test
+
+This checks to see if the recent_blogs method works as intended
+
+:code code/unit_test.rb[class=code-normal]
+
+h1. Basic Functional Testing
+
+Simulates HTTP GET Request
+
+:code code/functional_test.rb[class=code-large]
+
+Run all functional tests:
+@rake test:functionals@
+
+h1. Test Fixtures
+
+A fixture is YAML file that contains sample data to use for testing
+
+:code code/blogs.yml[class=code-normal]
+
+To use, place this at the top of your *_test.rb file: @fixtures :blogs.yml@

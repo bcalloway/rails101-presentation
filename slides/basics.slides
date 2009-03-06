@@ -1,0 +1,47 @@
+h1. Ruby Basics
+
+<img src="../ui/default/images/ruby.png" width="142" height="163" alt="Ruby" style="float:right" />
+
+* Ruby originated in Japan during the mid-1990s
+* Initially developed and designed by Yukihiro Matz Matsumoto
+* Ruby is an Object Oriented Language
+* Everything is an object
+
+h1. Ruby Objects
+
+* Instance Variables
+* Instance Methods
+* Symbols
+
+h1. Instance Variables and Methods
+
+:code code/songs.rb[class=code-large]
+
+<div class="note">
+  @index@ is an instance method in Songs<br />
+  @@songs@ is an instance variable in Songs
+</div>
+
+h1. Symbols
+
+* Used to name and identify things
+* Means "the thing named xxx"
+* Prefixed with a colon :
+
+@has_many :songs@
+@Songs.find(:all)@
+
+h1. Strings
+
+* Double-quoted strings support interpolated Ruby code
+* Single quoted strings display literal contents
+
+@puts 'Hello, Ruby!'@
+@puts "It's now #{Time.now}!"@
+
+h1. Class Methods in Rails
+
+* Methods tied to class
+* Perform class-level operations
+
+:code code/class_method.rb[class=code-large]

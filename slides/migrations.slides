@@ -1,0 +1,30 @@
+h1. Rails Migrations
+
+* Used to modify the database schema
+* Version control for your database schema
+* Database independent
+* Repeatable
+
+h1. Generating a Migration
+
+Generate the migration
+@script/generate migration add_blog_id_column_to_comments blog_id:string@
+
+Edit the migration file if necessary
+@db/migrate/XXXXXXXXXX_add_blog_id_column_to_comments.rb@
+
+If the proper naming convention is used, it is unnecessary to edit the migration before running
+
+Run the migration
+@rake db:migrate@
+
+h1. Migrating Up and Down
+
+Accesses the self.up method to migrate up
+@rake db:migrate@
+
+Accesses the self.down method to migrate down and revert the migration
+@rake db:migrate VERSION=XXXXXXXXXX@
+
+More options available:
+@rake -T@

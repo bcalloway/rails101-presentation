@@ -1,0 +1,20 @@
+h1. AJAX
+
+* Rails defaults to Prototype, Scriptaculous
+* jRails jQuery drop-in replacement
+* Get it working without AJAX first!
+* Take baby steps in your AJAX iteration
+
+@<%= javascript_include_tag :defaults, :cache => :true %>@
+
+h1. Functional Use of AJAX
+
+* Notification
+* Add, Edit, Delete without a browser refresh
+* Dynamic page updates
+* Drag-and-Drop
+
+AJAX should have a purpose, not "just because you can".
+
+Simple Example:
+@<%= link_to_function ("Posts", "Element.toggle('list')") %>@
